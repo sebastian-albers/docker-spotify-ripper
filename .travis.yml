@@ -10,11 +10,9 @@ script:
 # build platform-specific Docker images
 - docker build -f Dockerfile.amd64 -t sebastianalbers/spotify-ripper:latest-amd64 .
 - docker build -f Dockerfile.arm32v7 -t sebastianalbers/spotify-ripper:latest-arm32v7 .
-- docker build -f Dockerfile.arm64v8 -t sebastianalbers/spotify-ripper:latest-arm64v8 .
 # test platform-specific Docker images
 - ./read-version.sh amd64
 - ./read-version.sh arm32v7
-- ./read-version.sh arm64v8
 after_success:
 - echo "The build was triggered by $TRAVIS_EVENT_TYPE."
 - >
