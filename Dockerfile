@@ -1,7 +1,7 @@
 FROM arm32v7/ubuntu:16.04
 
 ENV DEBIAN_FRONTEND=noninteractive
-ENV PYTHONIOENCODING=UTF-8 
+ENV PYTHONIOENCODING=UTF-8
 
 # Codecs: lame, flac, vorbis to support mp3, flac, ogg
 RUN apt-get -qq update && \
@@ -19,14 +19,10 @@ RUN apt-get -qq update && \
     rm -rf /var/lib/apt/lists/* /etc/apt/sources.list.d/mopidy.list && \
     rm -rf /tmp/* /usr/src/spotify-ripper
 
-# Set up local user to run as
-RUN useradd -u 1000 -ms /bin/bash spotifyripper
-
-USER spotifyripper
-ENV HOME /home/spotifyripper
-RUN mkdir /home/spotifyripper/music /home/spotifyripper/.spotify-ripper
+RUN mkdir -p /home/spotifyripper/music /home/spotifyripper/.spotify-ripper
 
 WORKDIR /home/spotifyripper/music
 VOLUME ["/home/spotifyripper/.spotify-ripper", "/home/spotifyripper/music"]
 
-ENTRYPOINT ["/usr/local/bin/spotify-ripper"]
+COPY start.sh /usr/bin/start-spotify-ripper
+ENTRYPOINT ["/usr/bin/start-spotify-ripper"]
