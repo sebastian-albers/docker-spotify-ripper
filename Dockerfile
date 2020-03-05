@@ -3,7 +3,7 @@ FROM arm32v7/ubuntu:16.04
 ENV DEBIAN_FRONTEND=noninteractive
 ENV PYTHONIOENCODING=UTF-8
 
-# Codecs: lame, flac, vorbis to support mp3, flac, ogg
+# codecs: lame, flac, vorbis, fdkaac to support mp3, flac, ogg, aac
 RUN apt-get -qq update && \
     apt-get -qq install -y curl apt-transport-https wget && \
     curl -sL http://apt.mopidy.com/mopidy.gpg | apt-key add - && \
@@ -19,10 +19,11 @@ RUN apt-get -qq update && \
     rm -rf /var/lib/apt/lists/* /etc/apt/sources.list.d/mopidy.list && \
     rm -rf /tmp/* /usr/src/spotify-ripper
 
-RUN mkdir -p /home/spotifyripper/music /home/spotifyripper/.spotify-ripper
+RUN mkdir -p /home/spotifyripper/.spotify-ripper /home/spotifyripper/music
+VOLUME ["/home/spotifyripper/.spotify-ripper", "/home/spotifyripper/music"]
 
 WORKDIR /home/spotifyripper/music
-VOLUME ["/home/spotifyripper/.spotify-ripper", "/home/spotifyripper/music"]
 
 COPY start.sh /usr/bin/start-spotify-ripper
 ENTRYPOINT ["/usr/bin/start-spotify-ripper"]
+
