@@ -10,7 +10,6 @@ __CROSS_# Add QEMU
 __CROSS_COPY --from=builder qemu-__QEMU_ARCH__-static /usr/bin
 
 ENV DEBIAN_FRONTEND=noninteractive
-ENV PYTHONIOENCODING=UTF-8
 
 # codecs: lame, flac, vorbis, fdkaac to support mp3, flac, ogg, aac
 RUN apt-get -qq update && \

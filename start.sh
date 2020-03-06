@@ -14,5 +14,5 @@ adduser --system --shell /bin/false --gid "${GROUP_ID}" --uid "${USER_ID}" "${US
 
 chown -R "${USER}:${GROUP}" /home/spotifyripper
 
-su "${USER}" -s /bin/sh -c '/usr/local/bin/spotify-ripper "${0}" "$@"' -- "$@"
+su "${USER}" -s /bin/sh -c 'PYTHONIOENCODING=UTF-8 /usr/local/bin/spotify-ripper "${0}" "$@"' -- "$@"
 
