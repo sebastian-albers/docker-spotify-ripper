@@ -27,11 +27,12 @@ RUN apt-get -qq update && \
     rm -rf /var/lib/apt/lists/* /etc/apt/sources.list.d/mopidy.list && \
     rm -rf /tmp/* /usr/src/spotify-ripper
 
-RUN mkdir -p /home/spotifyripper/.spotify-ripper /home/spotifyripper/music
-VOLUME ["/home/spotifyripper/.spotify-ripper", "/home/spotifyripper/music"]
+RUN mkdir /config /music
+VOLUME ["/config", "/music"]
 
-WORKDIR /home/spotifyripper/music
+WORKDIR /music
 
 COPY start.sh /usr/bin/start-spotify-ripper
+COPY debug.sh /usr/bin/debug-spotify-ripper
 ENTRYPOINT ["/usr/bin/start-spotify-ripper"]
 
