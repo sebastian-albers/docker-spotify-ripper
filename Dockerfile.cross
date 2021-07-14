@@ -13,7 +13,7 @@ ENV DEBIAN_FRONTEND=noninteractive
 
 # install Spotify ripper via installation script
 COPY install-spotify-ripper.sh /usr/bin/install-spotify-ripper.sh
-RUN /usr/bin/install-spotify-ripper.sh && \
+RUN /usr/bin/install-spotify-ripper.sh "__GITHUB_TOKEN__" && \
     rm /usr/bin/install-spotify-ripper.sh
 
 RUN mkdir /config /music

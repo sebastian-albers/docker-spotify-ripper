@@ -2,6 +2,9 @@
 
 set -euo pipefail
 
+# parameters
+GITHUB_TOKEN=$1
+
 ARCHIVE_URL="https://api.github.com/repos/sebastian-albers/spotify-ripper/tarball"
 
 # add mopidy repository for libspotify
@@ -17,7 +20,8 @@ apt-get -qq install -y libspotify12 libspotify-dev python python-idna python-pkg
 
 # install spotify-ripper from master branch
 mkdir /usr/src/spotify-ripper
-curl -sL "${ARCHIVE_URL}" | tar xz -C /usr/src/spotify-ripper --strip-components=1
+curl --header "authorization: Bearer ${GITHUB_TOKEN}" -sL "${ARCHIVE_URL}" | \
+  tar xz -C /usr/src/spotify-ripper --strip-components=1
 pip install --upgrade pip
 cd /usr/src/spotify-ripper && pip install --upgrade .
 

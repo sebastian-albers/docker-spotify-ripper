@@ -27,7 +27,9 @@ jobs:
         run: docker run --rm --privileged multiarch/qemu-user-static:register --reset
 
       - name: Generate platform-specific Dockerfile
-        run: ./generate-dockerfiles.sh
+        run: ./generate-dockerfiles.sh "$GITHUB_TOKEN"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Build platform-specific Docker images
         run: |
