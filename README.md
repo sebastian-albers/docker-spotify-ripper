@@ -1,6 +1,6 @@
 # spotify-ripper containerized in Docker
 
-![Travis](https://img.shields.io/travis/com/sebastian-albers/docker-spotify-ripper.svg)
+[![Build Status](https://github.com/sebastian-albers/docker-spotify-ripper/actions/workflows/main.yml/badge.svg)](https://github.com/sebastian-albers/docker-spotify-ripper/actions/workflows/main.yml)
 ![Docker Build Status](https://img.shields.io/docker/cloud/build/sebastianalbers/spotify-ripper.svg)
 ![Docker Automated build](https://img.shields.io/docker/cloud/automated/sebastianalbers/spotify-ripper.svg)
 ![Docker Pulls](https://img.shields.io/docker/pulls/sebastianalbers/spotify-ripper.svg)
