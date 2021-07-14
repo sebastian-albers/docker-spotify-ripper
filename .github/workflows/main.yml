@@ -35,13 +35,11 @@ jobs:
         run: |
           docker build -f Dockerfile.amd64 -t $GITHUB_REPOSITORY:latest-amd64 .
           docker build -f Dockerfile.arm32v7 -t $GITHUB_REPOSITORY:latest-arm32v7 .
-          docker build -f Dockerfile.arm64v8 -t $GITHUB_REPOSITORY:latest-arm64v8 .
 
       - name: Test platform-specific Docker images
         run: |
           ./read-version.sh amd64
           ./read-version.sh arm32v7
-          ./read-version.sh arm64v8
 
       - name: Push images to Docker Hub
         run: |
